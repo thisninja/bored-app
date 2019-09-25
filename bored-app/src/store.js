@@ -10,9 +10,11 @@ export default new Vuex.Store({
   state: {
     activeTab: ACTIVITY,
     activity: '',
+    activitiesList: [],
   },
   getters: {
     activity: state => state.activity,
+    activitiesList: state => state.activitiesList,
   },
   mutations: {
     SET_ACTIVE_TAB(state, payload = ACTIVITY) {
@@ -25,6 +27,9 @@ export default new Vuex.Store({
     },
     SET_ACTIVITY(state, payload) {
       state.activity = payload;
+    },
+    SAVE_ACTIVITY_TO_LIST(state, payload) {
+      state.activitiesList.push(payload);
     },
   },
   actions: {

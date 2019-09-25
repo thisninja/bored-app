@@ -1,6 +1,9 @@
 import Vue from 'vue';
 
 import {
+  Button,
+  Table,
+  TableColumn,
   Input,
   Tabs,
   TabPane,
@@ -13,7 +16,8 @@ import router from './router';
 import store from './store';
 import './registerServiceWorker';
 
-[Input, Tabs, TabPane].forEach(el => Vue.use(el));
+[Button, Table, TableColumn, Input, Tabs, TabPane]
+  .forEach(el => Vue.use(el));
 
 Vue.prototype.$http = axios;
 
