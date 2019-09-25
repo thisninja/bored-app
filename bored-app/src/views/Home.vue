@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <el-tabs type="card">
+    <el-tabs type="border-card" class="tabs">
       <el-tab-pane
         v-for="(item, index) in availableTabs"
         :key="index"
@@ -54,3 +54,15 @@ export default {
   },
 };
 </script>
+
+<style lang="scss" scoped>
+.home {
+  display: flex;
+  justify-content: center;
+  margin: 100px auto 200px auto;
+}
+
+.tabs {
+  width: 500px;
+}
+</style>

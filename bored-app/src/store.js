@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import createPersistedState from 'vuex-persistedstate';
+
 import {
   ACTIVITY, MY_LIST,
 } from './constants';
@@ -7,6 +9,7 @@ import {
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  plugins: [createPersistedState()],
   state: {
     activeTab: ACTIVITY,
     activity: '',

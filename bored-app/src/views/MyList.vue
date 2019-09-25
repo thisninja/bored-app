@@ -6,10 +6,21 @@
     <el-table-column
       type="index">
     </el-table-column>
-      <el-table-column
-        prop="name"
-        :label="ACTIVITY">
-      </el-table-column>
+    <el-table-column
+      min-width="150px"
+      prop="name"
+      :label="ACTIVITY">
+    </el-table-column>
+    <el-table-column
+      align="center"
+      prop="participants"
+      :label="PARTICIPANTS">
+    </el-table-column>
+    <el-table-column
+      align="center"
+      prop="budget"
+      :label="BUDGET">
+    </el-table-column>
     </el-table>
   </div>
 </template>
@@ -18,6 +29,8 @@
 import { mapGetters } from 'vuex';
 import {
   ACTIVITY,
+  PARTICIPANTS,
+  BUDGET,
 } from '../constants';
 
 
@@ -27,6 +40,8 @@ export default {
   data() {
     return {
       ACTIVITY,
+      PARTICIPANTS,
+      BUDGET,
     };
   },
   computed: {
