@@ -9,8 +9,6 @@ import {
   Option,
   Tabs,
   TabPane,
-  Progress,
-  Switch,
   Select,
   Slider,
 } from 'element-ui';
@@ -20,8 +18,7 @@ import axios from 'axios';
 import App from './App.vue';
 import store from './store';
 
-[Button, Table, TableColumn, Input, InputNumber, Option, Tabs, TabPane,
-  Progress, Switch, Select, Slider]
+[Button, Table, TableColumn, Input, InputNumber, Option, Tabs, TabPane, Select, Slider]
   .forEach(el => Vue.use(el));
 
 Vue.prototype.$http = axios;
