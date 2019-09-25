@@ -13,6 +13,8 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   plugins: [createPersistedState()],
   state: {
+    params: {},
+    responseError: null,
     activeTab: ACTIVITY,
     activity: '',
     activitiesList: [],
@@ -21,6 +23,7 @@ export default new Vuex.Store({
     budget: null,
   },
   getters: {
+    responseError: state => state.responseError,
     activity: state => state.activity,
     activitiesList: state => state.activitiesList,
     type: state => state.type,
@@ -62,6 +65,12 @@ export default new Vuex.Store({
     SET_TYPE(state, payload) {
       state.type = payload;
     },
+    SET_RESPONSE_ERROR(state, payload) {
+      state.responseError = payload;
+    },
+    CLEAR_RESPONSE_ERROR(state) {
+      state.responseError = null;
+    },
   },
   actions: {
     async fetchActivity({ getters, commit }) {
@@ -81,11 +90,16 @@ export default new Vuex.Store({
 
       if (!Number.isNaN(getters.budget)) {
         params = Object.assign(params, {
-          price: Boolean(getters.budget),
+          price: getters.budget / 100,
         });
       }
 
-      const { data } = await Vue.prototype.$http.get(API_URL, params);
+      const { data } = await Vue.prototype.$http.get(API_URL, { params });
+
+      if (data.error) {
+        commit('SET_RESPONSE_ERROR', data.error);
+        params = {};
+      }
 
       commit('SET_ACTIVITY', data.activity);
       commit('SET_BUDGET', Math.round(data.price * 100));

@@ -15,6 +15,7 @@
 <script>
 import {
   mapGetters,
+  mapMutations,
   mapActions,
 } from 'vuex';
 
@@ -28,10 +29,11 @@ export default {
     MyList,
   },
   computed: {
-    ...mapGetters(['activity']),
+    ...mapGetters(['activity', 'responseError']),
   },
   methods: {
     ...mapActions(['fetchActivity']),
+    ...mapMutations(['CLEAR_RESPONSE_ERROR']),
   },
   data() {
     return {
@@ -46,6 +48,18 @@ export default {
         },
       ],
     };
+  },
+  watch: {
+    responseError(value) {
+      if (value) {
+        this.$notify.error({
+          title: 'Error',
+          message: this.responseError,
+        });
+
+        this.CLEAR_RESPONSE_ERROR();
+      }
+    },
   },
   created() {
     if (!this.activity) {

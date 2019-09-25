@@ -11,6 +11,7 @@ import {
   TabPane,
   Select,
   Slider,
+  Notification,
 } from 'element-ui';
 
 import axios from 'axios';
@@ -20,6 +21,8 @@ import store from './store';
 
 [Button, Table, TableColumn, Input, InputNumber, Option, Tabs, TabPane, Select, Slider]
   .forEach(el => Vue.use(el));
+
+Vue.prototype.$notify = Notification;
 
 Vue.prototype.$http = axios;
 
