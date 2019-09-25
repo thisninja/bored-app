@@ -15,6 +15,7 @@ module.exports = {
   ],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
+    '\\.css$': '<rootDir>/__mocks__/styleMock.js',
   },
   snapshotSerializers: [
     'jest-serializer-vue',

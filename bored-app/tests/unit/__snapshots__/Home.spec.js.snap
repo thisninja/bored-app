@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home.vue should match snapshot 1`] = `
+<div class="home">
+  <el-tabs-stub type="border-card" tabposition="top" class="tabs">
+    <el-tab-pane-stub label="Activities">
+      <activity-stub></activity-stub>
+    </el-tab-pane-stub>
+    <el-tab-pane-stub label="My List">
+      <mylist-stub></mylist-stub>
+    </el-tab-pane-stub>
+  </el-tabs-stub>
+</div>
+`;
