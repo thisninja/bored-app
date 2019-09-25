@@ -121,19 +121,19 @@ export default {
       TYPE_LABEL_TEXT,
       TYPES,
       marks: {
-         0: {
+        0: {
           style: {
-            marginLeft: '15px'
+            marginLeft: '15px',
           },
           label: 'cheap',
-         },
-         100: {
+        },
+        100: {
           style: {
-            paddingRight: '60px'
+            paddingRight: '60px',
           },
           label: 'expensive',
-         },
-      }
+        },
+      },
     };
   },
   methods: {
@@ -201,7 +201,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/scss/_variables.scss';
+//@import '../assets/scss/_variables.scss';
 .activity /deep/ {
   .el-select-dropdown__item {
     text-transform: capitalize;

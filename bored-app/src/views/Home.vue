@@ -43,8 +43,8 @@ export default {
             currentActivity: {
               type: String,
               value: this.activity,
-            }
-          }
+            },
+          },
         },
         {
           label: 'My List',

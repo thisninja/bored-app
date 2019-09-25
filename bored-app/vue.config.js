@@ -3,8 +3,8 @@ module.exports = {
     loaderOptions: {
       sass: {
         data: `
-          @import "@/scss/_globals.scss";
-          @import "@/scss/_variables.scss";
+          @import "@/assets/scss/_global.scss";
+          @import "@/assets/scss/_variables.scss";
         `,
       },
     },

@@ -37,11 +37,13 @@ export default new Vuex.Store({
     SET_ACTIVITY(state, payload) {
       state.activity = payload;
     },
+    CLEAR_ALL_ACTIVITIES(state) {
+      state.activitiesList = [];
+    },
     SAVE_ACTIVITY_TO_LIST(state, payload) {
       state.activitiesList.push(payload);
     },
     SET_BUDGET(state, payload) {
-      console.log('budget payload: ', payload);
       state.budget = payload;
     },
     SET_PARTICIPANTS(state, payload) {
