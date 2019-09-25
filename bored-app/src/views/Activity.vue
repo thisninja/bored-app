@@ -63,7 +63,7 @@
           </span>
           <div class="activity__budget">
           <el-slider
-            v-model="formattedBudget"
+            v-model="currentBudget"
             :marks="marks">
           </el-slider>
           </div>
@@ -153,26 +153,13 @@ export default {
       });
       this.SET_ACTIVITY('');
     },
-    handleChange(value) {
-      console.log('value ', value)
-      this.SET_ACTIVITY(value);
-    },
     handleHitMeButton() {
       this.fetchActivity();
     },
   },
   computed: {
-    formattedBudget: {
-      get() {
-        return this.budget * 100;
-      },
-      set(value) {
-        this.SET_BUDGET(value);
-      },
-    },
     currentBudget: {
       get() {
-        console.log('this.budget ', this.budget);
         return this.budget;
       },
       set(value) {
@@ -192,7 +179,6 @@ export default {
         return this.activity;
       },
       set(value) {
-        console.log('value ', value)
         this.SET_ACTIVITY(value);
       },
     },

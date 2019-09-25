@@ -62,13 +62,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.home {
+.home /deep/ {
   display: flex;
   justify-content: center;
   margin: 100px auto 200px auto;
-}
 
-.tabs {
-  width: 500px;
+  .tabs {
+    width: 500px;
+  }
+
+  .el-tabs__content {
+    height: 350px;
+  }
 }
 </style>

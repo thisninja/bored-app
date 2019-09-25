@@ -41,6 +41,7 @@ export default new Vuex.Store({
       state.activitiesList.push(payload);
     },
     SET_BUDGET(state, payload) {
+      console.log('budget payload: ', payload);
       state.budget = payload;
     },
     SET_PARTICIPANTS(state, payload) {
@@ -75,7 +76,7 @@ export default new Vuex.Store({
       const { data } = await Vue.prototype.$http.get('http://www.boredapi.com/api/activity/', params);
 
       commit('SET_ACTIVITY', data.activity);
-      commit('SET_BUDGET', data.price);
+      commit('SET_BUDGET', Math.round(data.price * 100));
       commit('SET_PARTICIPANTS', data.participants);
       commit('SET_TYPE', data.type);
     },
