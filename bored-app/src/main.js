@@ -18,9 +18,7 @@ import {
 import axios from 'axios';
 
 import App from './App.vue';
-import router from './router';
 import store from './store';
-import './registerServiceWorker';
 
 [Button, Table, TableColumn, Input, InputNumber, Option, Tabs, TabPane,
   Progress, Switch, Select, Slider]
@@ -31,7 +29,6 @@ Vue.prototype.$http = axios;
 Vue.config.productionTip = false;
 
 new Vue({
-  router,
   store,
   render: h => h(App),
 }).$mount('#app');
