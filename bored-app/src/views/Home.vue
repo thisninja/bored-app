@@ -31,7 +31,7 @@ export default {
     ...mapGetters(['activity']),
   },
   methods: {
-    ...mapActions(['fetchRandomActivity']),
+    ...mapActions(['fetchActivity']),
   },
   data() {
     return {
@@ -49,7 +49,7 @@ export default {
   },
   created() {
     if (!this.activity) {
-      this.fetchRandomActivity();
+      this.fetchActivity();
     }
   },
 };

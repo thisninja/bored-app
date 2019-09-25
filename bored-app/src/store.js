@@ -14,10 +14,16 @@ export default new Vuex.Store({
     activeTab: ACTIVITY,
     activity: '',
     activitiesList: [],
+    type: '',
+    participants: null,
+    budget: null,
   },
   getters: {
     activity: state => state.activity,
     activitiesList: state => state.activitiesList,
+    type: state => state.type,
+    participants: state => state.participants,
+    budget: state => state.budget,
   },
   mutations: {
     SET_ACTIVE_TAB(state, payload = ACTIVITY) {
@@ -28,18 +34,50 @@ export default new Vuex.Store({
 
       state.activeTab = payload;
     },
-    SET_ACTIVITY(state, payload) {
-      state.activity = payload;
+    SET_ACTIVITY(state, { activity, participants, price, type }) {
+      state.activity = activity;
+      state.participants = participants;
+      state.budget = price;
+      state.type = type;
     },
     SAVE_ACTIVITY_TO_LIST(state, payload) {
       state.activitiesList.push(payload);
     },
+    SET_BUDGET(state, payload) {
+      state.budget = payload;
+    },
+    SET_PARTICIPANTS(state, payload) {
+      state.participants = payload;
+    },
+    SET_TYPE(state, payload) {
+      state.type = payload;
+    },
   },
   actions: {
-    async fetchRandomActivity({ commit }) {
-      const { data } = await Vue.prototype.$http.get('http://www.boredapi.com/api/activity/');
+    async fetchActivity({ getters, commit }) {
+      let params = {};
 
-      commit('SET_ACTIVITY', data.activity);
+      if (getters.type) {
+        params = Object.assign(params, {
+          type: getters.type,
+        });
+      }
+
+      if (getters.participants) {
+        params = Object.assign(params, {
+          participants: getters.participants,
+        });
+      }
+
+      if (!Number.isNaN(getters.budget)) {
+        params = Object.assign(params, {
+          price: Boolean(getters.budget),
+        });
+      }
+
+      const { data } = await Vue.prototype.$http.get('http://www.boredapi.com/api/activity/', params);
+
+      commit('SET_ACTIVITY', data);
     },
   },
 });

@@ -32,9 +32,13 @@
           <span class="activity__input-label">
             {{ TYPE_LABEL_TEXT }}
           </span>
-          <el-select v-model="type" clearable placeholder="Select">
+          <el-select
+            v-model="currentType"
+            placeholder="Select"
+            size="mini"
+            >
             <el-option
-              v-for="(item, index) in types"
+              v-for="(item, index) in TYPES"
               :key="index"
               :label="item"
               :value="item">
@@ -46,7 +50,8 @@
             {{ PARTICIPANTS }}
           </span>
           <el-input-number
-            v-model="participants"
+            size="mini"
+            v-model="currentParticipants"
             :min="MIN_PARTICIPANTS_NUMBER"
             :max="MAX_PARTICIPANTS_NUMBER"
           >
@@ -56,11 +61,25 @@
           <span class="activity__input-label">
             {{ BUDGET }}
           </span>
-          <el-switch
-            v-model="lowBudget"
+          <div class="activity__budget">
+          <el-slider
+            v-model="formattedBudget"
+            :marks="marks">
+          </el-slider>
+            <!--span>cheap</span>
+            <el-progress
+              :percentage="formattedBudget"
+              :show-text="false"
+            ></el-progress>
+            <span>expensive</span-->
+          </div>
+          <!--el-switch
+            v-model="currentBudget"
             active-text="expensive"
-            inactive-text="cheap">
-          </el-switch>
+            inactive-text="cheap"
+            :active-value="isExpensive"
+            :inactive-value="!isExpensive">
+          </el-switch-->
         </div>
       </div>
       <el-button
@@ -77,6 +96,7 @@
 <script>
 import {
   mapGetters,
+  mapActions,
   mapMutations,
 } from 'vuex';
 
@@ -94,15 +114,13 @@ const HIT_ME_BUTTON_TEXT = 'Hit me with another one';
 const TYPE_LABEL_TEXT = 'Type';
 const MIN_PARTICIPANTS_NUMBER = 1;
 const MAX_PARTICIPANTS_NUMBER = 9999999;
+const TYPES = ['education', 'recreational', 'social', 'diy', 'charity', 'cooking', 'relaxation', 'music', 'busywork'];
 
 export default {
   name: 'Activity',
   components: {},
   data() {
     return {
-      type: '',
-      lowBudget: false,
-      participants: 1,
       BUDGET,
       PARTICIPANTS,
       MIN_PARTICIPANTS_NUMBER,
@@ -114,14 +132,32 @@ export default {
       ACTIVITY_PLACEHOLDER_TEXT,
       HIT_ME_BUTTON_TEXT,
       TYPE_LABEL_TEXT,
-      types: ['education', 'recreational', 'social', 'diy', 'charity', 'cooking', 'relaxation', 'music', 'busywork'],
+      TYPES,
+      marks: {
+         0: {
+          style: {
+            marginLeft: '15px'
+          },
+          label: 'cheap',
+         },
+         100: {
+          style: {
+            paddingRight: '60px'
+          },
+          label: 'expensive',
+         },
+      }
     };
   },
   methods: {
     ...mapMutations([
+      'SET_BUDGET',
+      'SET_TYPE',
       'SET_ACTIVITY',
+      'SET_PARTICIPANTS',
       'SAVE_ACTIVITY_TO_LIST',
     ]),
+    ...mapActions(['fetchActivity']),
     handleSaveActivity() {
       this.SAVE_ACTIVITY_TO_LIST({
         name: this.currentActivity,
@@ -131,10 +167,38 @@ export default {
       this.SET_ACTIVITY('');
     },
     handleHitMeButton() {
-      // @TODO:
+      this.fetchActivity();
     },
   },
   computed: {
+    formattedBudget: {
+      get() {
+        return this.budget * 100;
+      },
+      set(value) {
+        this.SET_BUDGET(value);
+      },
+    },
+    isExpensive() {
+      return this.currentBudget > 0.5;
+    },
+    currentBudget: {
+      get() {
+        console.log('this.budget ', this.budget);
+        return this.budget;
+      },
+      set(value) {
+        this.SET_BUDGET(value);
+      },
+    },
+    currentType: {
+      get() {
+        return this.type;
+      },
+      set(value) {
+        this.SET_TYPE(value);
+      },
+    },
     currentActivity: {
       get() {
         return this.activity;
@@ -143,13 +207,50 @@ export default {
         this.SET_ACTIVITY(value);
       },
     },
-    ...mapGetters(['activity']),
+    currentParticipants: {
+      get() {
+        return this.participants;
+      },
+      set(value) {
+        this.SET_PARTICIPANTS(value);
+      },
+    },
+    ...mapGetters([
+      'activity',
+      'participants',
+      'budget',
+      'type',
+    ]),
   },
 };
 </script>
 
 <style lang="scss" scoped>
 @import '../assets/scss/_variables.scss';
+.activity /deep/ {
+  .el-select-dropdown__item {
+    text-transform: capitalize;
+  }
+
+  .el-slider__stop {
+    background-color: unset;
+  }
+
+  .el-select,
+  .el-input-number {
+    margin-top: 2px;
+  }
+
+  .el-slider__runway {
+    margin: 16px 5px;
+    width: 94%;
+
+    .el-slider__button {
+      width: 8px;
+      height: 8px;
+    }
+  }
+}
 
 .activity {
   &__info,
@@ -159,6 +260,11 @@ export default {
 
   &__content {
     height: 200px;
+
+    .activity__filter:last-child .activity__input-label {
+      position: relative;
+      top: 5px;
+    }
   }
 
   &__details {
@@ -179,6 +285,7 @@ export default {
   }
 
   &__input-label {
+    font-size: 12px;
     color: $grey-100;
   }
 
@@ -187,9 +294,4 @@ export default {
     width: 100%;
   }
 }
-
-.el-select-dropdown__item {
-  text-transform: capitalize;
-}
-
 </style>
