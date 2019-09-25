@@ -5,10 +5,12 @@
       :data="activitiesList"
       :empty-text="NO_ACTIVITIES_TITLE"
       max-height="250"
+      @selection-change="handleSelectionChange"
       >
     <el-table-column
       type="selection"
-      width="40">
+      width="40"
+      >
     </el-table-column>
     <el-table-column
       type="index">
@@ -35,9 +37,10 @@
     <el-button
       class="full-width my-list__button"
       type="danger"
-      @click="CLEAR_ALL_ACTIVITIES"
+      :disabled="!activitiesList.length"
+      @click="CLEAR_ACTIVITIES(selected)"
     >
-      {{ CLEAR_ALL_TEXT }}
+      {{ selected.length ? CLEAR_SELECTED_TEXT : CLEAR_ALL_TEXT }}
     </el-button>
   </div>
 </template>
@@ -57,21 +60,27 @@ import {
 
 const NO_ACTIVITIES_TITLE = 'No activities';
 const CLEAR_ALL_TEXT = 'Clear all';
+const CLEAR_SELECTED_TEXT = 'Clear selected';
 
 export default {
   name: 'MyList',
   components: {},
   data() {
     return {
+      selected: [],
       NO_ACTIVITIES_TITLE,
       CLEAR_ALL_TEXT,
+      CLEAR_SELECTED_TEXT,
       ACTIVITY,
       PARTICIPANTS,
       BUDGET,
     };
   },
   methods: {
-    ...mapMutations(['CLEAR_ALL_ACTIVITIES']),
+    ...mapMutations(['CLEAR_ACTIVITIES']),
+    handleSelectionChange(value) {
+      this.selected = value;
+    },
     isExpensive,
   },
   computed: {

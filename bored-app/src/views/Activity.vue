@@ -147,6 +147,7 @@ export default {
     ...mapActions(['fetchActivity']),
     handleSaveActivity() {
       this.SAVE_ACTIVITY_TO_LIST({
+        uid: `${Math.round(Math.random() * 100)}_${Date.now()}`,
         name: this.currentActivity,
         participants: this.currentParticipants,
         budget: this.currentBudget,
@@ -201,7 +202,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-//@import '../assets/scss/_variables.scss';
+
 .activity /deep/ {
   .el-select-dropdown__item {
     text-transform: capitalize;

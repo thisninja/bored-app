@@ -3,7 +3,9 @@ import Vuex from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
 
 import {
-  ACTIVITY, MY_LIST,
+  ACTIVITY,
+  MY_LIST,
+  API_URL,
 } from './constants';
 
 Vue.use(Vuex);
@@ -37,8 +39,16 @@ export default new Vuex.Store({
     SET_ACTIVITY(state, payload) {
       state.activity = payload;
     },
-    CLEAR_ALL_ACTIVITIES(state) {
-      state.activitiesList = [];
+    CLEAR_ACTIVITIES(state, payload = []) {
+      if (!payload.length) {
+        state.activitiesList = [];
+      } else {
+        const ids = [...new Set(payload.map(item => item.uid))];
+
+        state.activitiesList = state.activitiesList.filter(
+          activity => !ids.includes(activity.uid),
+        );
+      }
     },
     SAVE_ACTIVITY_TO_LIST(state, payload) {
       state.activitiesList.push(payload);
@@ -75,7 +85,7 @@ export default new Vuex.Store({
         });
       }
 
-      const { data } = await Vue.prototype.$http.get('http://www.boredapi.com/api/activity/', params);
+      const { data } = await Vue.prototype.$http.get(API_URL, params);
 
       commit('SET_ACTIVITY', data.activity);
       commit('SET_BUDGET', Math.round(data.price * 100));
