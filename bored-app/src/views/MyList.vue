@@ -2,7 +2,9 @@
   <div class="my-list">
    <el-table
       :data="activitiesList"
-      style="width: 100%">
+      empty-text="No activities"
+      style="width: 100%"
+      >
     <el-table-column
       type="index">
     </el-table-column>

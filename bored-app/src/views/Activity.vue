@@ -66,20 +66,7 @@
             v-model="formattedBudget"
             :marks="marks">
           </el-slider>
-            <!--span>cheap</span>
-            <el-progress
-              :percentage="formattedBudget"
-              :show-text="false"
-            ></el-progress>
-            <span>expensive</span-->
           </div>
-          <!--el-switch
-            v-model="currentBudget"
-            active-text="expensive"
-            inactive-text="cheap"
-            :active-value="isExpensive"
-            :inactive-value="!isExpensive">
-          </el-switch-->
         </div>
       </div>
       <el-button
@@ -161,10 +148,14 @@ export default {
     handleSaveActivity() {
       this.SAVE_ACTIVITY_TO_LIST({
         name: this.currentActivity,
-        participants: 4,
-        budget: 'cheap',
+        participants: this.currentParticipants,
+        budget: this.currentBudget,
       });
       this.SET_ACTIVITY('');
+    },
+    handleChange(value) {
+      console.log('value ', value)
+      this.SET_ACTIVITY(value);
     },
     handleHitMeButton() {
       this.fetchActivity();
@@ -178,9 +169,6 @@ export default {
       set(value) {
         this.SET_BUDGET(value);
       },
-    },
-    isExpensive() {
-      return this.currentBudget > 0.5;
     },
     currentBudget: {
       get() {
@@ -204,6 +192,7 @@ export default {
         return this.activity;
       },
       set(value) {
+        console.log('value ', value)
         this.SET_ACTIVITY(value);
       },
     },

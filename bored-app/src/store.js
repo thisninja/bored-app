@@ -34,11 +34,8 @@ export default new Vuex.Store({
 
       state.activeTab = payload;
     },
-    SET_ACTIVITY(state, { activity, participants, price, type }) {
-      state.activity = activity;
-      state.participants = participants;
-      state.budget = price;
-      state.type = type;
+    SET_ACTIVITY(state, payload) {
+      state.activity = payload;
     },
     SAVE_ACTIVITY_TO_LIST(state, payload) {
       state.activitiesList.push(payload);
@@ -77,7 +74,10 @@ export default new Vuex.Store({
 
       const { data } = await Vue.prototype.$http.get('http://www.boredapi.com/api/activity/', params);
 
-      commit('SET_ACTIVITY', data);
+      commit('SET_ACTIVITY', data.activity);
+      commit('SET_BUDGET', data.price);
+      commit('SET_PARTICIPANTS', data.participants);
+      commit('SET_TYPE', data.type);
     },
   },
 });

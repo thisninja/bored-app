@@ -39,6 +39,12 @@ export default {
         {
           label: 'Activities',
           component: Activity,
+          props: {
+            currentActivity: {
+              type: String,
+              value: this.activity,
+            }
+          }
         },
         {
           label: 'My List',
