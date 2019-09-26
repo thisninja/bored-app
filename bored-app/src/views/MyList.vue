@@ -40,7 +40,7 @@
       :disabled="!activitiesList.length"
       @click="CLEAR_ACTIVITIES(selected)"
     >
-      {{ selected.length ? CLEAR_SELECTED_TEXT : CLEAR_ALL_TEXT }}
+      {{ activeButtonText }}
     </el-button>
   </div>
 </template>
@@ -85,6 +85,11 @@ export default {
   },
   computed: {
     ...mapGetters(['activitiesList']),
+    activeButtonText() {
+      return this.selected.length
+        ? this.CLEAR_SELECTED_TEXT
+        : this.CLEAR_ALL_TEXT;
+    },
   },
 };
 </script>

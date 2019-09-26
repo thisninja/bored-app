@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyList.vue methods handleSelectionChange 1`] = `
+<div class="my-list">
+  <el-table-stub data="" maxheight="250" fit="true" showheader="true" emptytext="No activities" selectonindeterminate="true" indent="16" treeprops="[object Object]" class="my-list__table">
+    <el-table-column-stub type="selection" width="40" resizable="true" filtermultiple="true" sortorders="ascending,descending,"></el-table-column-stub>
+    <el-table-column-stub type="index" resizable="true" filtermultiple="true" sortorders="ascending,descending,"></el-table-column-stub>
+    <el-table-column-stub type="default" label="Activity" prop="name" minwidth="120px" resizable="true" filtermultiple="true" sortorders="ascending,descending,"></el-table-column-stub>
+    <el-table-column-stub type="default" label="Participants" prop="participants" resizable="true" align="center" filtermultiple="true" sortorders="ascending,descending,"></el-table-column-stub>
+    <el-table-column-stub type="default" label="Budget" prop="budget" resizable="true" align="center" filtermultiple="true" sortorders="ascending,descending,"></el-table-column-stub>
+  </el-table-stub>
+  <el-button-stub type="danger" icon="" nativetype="button" disabled="true" class="full-width my-list__button">
+    Clear selected
+  </el-button-stub>
+</div>
+`;
+
+exports[`MyList.vue should match snapshot 1`] = `
+<div class="my-list">
+  <el-table-stub data="" maxheight="250" fit="true" showheader="true" emptytext="No activities" selectonindeterminate="true" indent="16" treeprops="[object Object]" class="my-list__table">
+    <el-table-column-stub type="selection" width="40" resizable="true" filtermultiple="true" sortorders="ascending,descending,"></el-table-column-stub>
+    <el-table-column-stub type="index" resizable="true" filtermultiple="true" sortorders="ascending,descending,"></el-table-column-stub>
+    <el-table-column-stub type="default" label="Activity" prop="name" minwidth="120px" resizable="true" filtermultiple="true" sortorders="ascending,descending,"></el-table-column-stub>
+    <el-table-column-stub type="default" label="Participants" prop="participants" resizable="true" align="center" filtermultiple="true" sortorders="ascending,descending,"></el-table-column-stub>
+    <el-table-column-stub type="default" label="Budget" prop="budget" resizable="true" align="center" filtermultiple="true" sortorders="ascending,descending,"></el-table-column-stub>
+  </el-table-stub>
+  <el-button-stub type="danger" icon="" nativetype="button" disabled="true" class="full-width my-list__button">
+    Clear all
+  </el-button-stub>
+</div>
+`;
