@@ -17,7 +17,7 @@ import {
 import axios from 'axios';
 
 import App from './App.vue';
-import store from './store';
+import store from './store/store';
 
 [Button, Table, TableColumn, Input, InputNumber, Option, Tabs, TabPane, Select, Slider]
   .forEach(el => Vue.use(el));
