@@ -7,4 +7,4 @@ export const TYPE = 'Type';
 export const EXPENSIVE = 'expensive';
 export const CHEAP = 'cheap';
 
-export const API_URL = 'http://www.boredapi.com/api/activity/';
+export const API_URL = 'https://www.boredapi.com/api/activity/';
