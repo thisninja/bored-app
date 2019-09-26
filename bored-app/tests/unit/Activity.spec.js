@@ -92,11 +92,7 @@ describe('Activity.vue', () => {
     it('handleSaveActivity', () => {
       wrapper.vm.handleSaveActivity();
 
-      const uidRegExp = /\d{2}_\d{13}/;
       const { uid } = mutations.SAVE_ACTIVITY_TO_LIST.mock.calls[0][1];
-      expect(uid).toEqual(
-        expect.stringMatching(uidRegExp),
-      );
 
       expect(mutations.SAVE_ACTIVITY_TO_LIST).toHaveBeenCalledWith({}, {
         uid,
