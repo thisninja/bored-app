@@ -112,7 +112,7 @@ const TYPES = [
   'cooking',
   'relaxation',
   'music',
-  'busywork'
+  'busywork',
 ];
 
 export default {
