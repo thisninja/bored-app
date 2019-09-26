@@ -11,21 +11,16 @@ localVue.use(ElementUI);
 describe('Activity.vue', () => {
   let wrapper;
   let store;
-  let state;
   let actions;
   let mutations;
   let getters;
 
   beforeEach(() => {
-    state = {
-      budget: null,
-    };
-
     getters = {
       activity: () => '',
       participants: () => null,
       type: () => '',
-      budget: () => state.budget,
+      budget: () => null,
     };
 
     actions = {
@@ -87,9 +82,11 @@ describe('Activity.vue', () => {
   });
 
   describe('methods', () => {
-    it('handleHitMeButton', () => {
-      wrapper.vm.handleHitMeButton();
-      expect(actions.fetchActivity).toHaveBeenCalled();
+    describe('handleHitMeButton', () => {
+      it('should be called directly', () => {
+        wrapper.vm.handleHitMeButton();
+        expect(actions.fetchActivity).toHaveBeenCalled();
+      });
     });
 
     it('handleSaveActivity', () => {

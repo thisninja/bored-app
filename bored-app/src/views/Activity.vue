@@ -103,7 +103,17 @@ const HIT_ME_BUTTON_TEXT = 'Hit me with another one';
 const TYPE_LABEL_TEXT = 'Type';
 const MIN_PARTICIPANTS_NUMBER = 1;
 const MAX_PARTICIPANTS_NUMBER = 9999999;
-const TYPES = ['education', 'recreational', 'social', 'diy', 'charity', 'cooking', 'relaxation', 'music', 'busywork'];
+const TYPES = [
+  'education',
+  'recreational',
+  'social',
+  'diy',
+  'charity',
+  'cooking',
+  'relaxation',
+  'music',
+  'busywork'
+];
 
 export default {
   name: 'Activity',
