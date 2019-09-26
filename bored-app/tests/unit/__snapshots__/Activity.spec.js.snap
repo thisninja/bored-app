@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Activity.vue should match snapshot 1`] = `
+<div class="activity">
+  <div class="activity__info">
+    <h2 class="activity__label">
+      You should:
+    </h2>
+    <div class="activity__content">
+      <el-input-stub value="" resize="none" type="textarea" autocomplete="off" validateevent="true" rows="4" placeholder="Type your activity here" class="activity__editor"></el-input-stub>
+    </div>
+    <el-button-stub type="danger" icon="" nativetype="button" disabled="true" class="activity__button">
+      Save for later
+    </el-button-stub>
+  </div>
+  <div class="activity__details">
+    <h2 class="activity__detail-label">
+      Activity Details:
+    </h2>
+    <div class="activity__content">
+      <div class="activity__filter"><span class="activity__input-label">
+          Type
+        </span>
+        <el-select-stub value="" autocomplete="off" size="mini" multiplelimit="0" placeholder="Select" valuekey="value" popperappendtobody="true">
+          <el-option-stub value="education" label="education"></el-option-stub>
+          <el-option-stub value="recreational" label="recreational"></el-option-stub>
+          <el-option-stub value="social" label="social"></el-option-stub>
+          <el-option-stub value="diy" label="diy"></el-option-stub>
+          <el-option-stub value="charity" label="charity"></el-option-stub>
+          <el-option-stub value="cooking" label="cooking"></el-option-stub>
+          <el-option-stub value="relaxation" label="relaxation"></el-option-stub>
+          <el-option-stub value="music" label="music"></el-option-stub>
+          <el-option-stub value="busywork" label="busywork"></el-option-stub>
+        </el-select-stub>
+      </div>
+      <div class="activity__filter"><span class="activity__input-label">
+          Participants
+        </span>
+        <el-input-number-stub step="1" max="9999999" min="1" size="mini" controls="true" controlsposition=""></el-input-number-stub>
+      </div>
+      <div class="activity__filter"><span class="activity__input-label">
+          Budget
+        </span>
+        <div class="activity__budget">
+          <el-slider-stub min="0" max="100" step="1" showinputcontrols="true" inputsize="small" showtooltip="true" debounce="300" marks="[object Object]"></el-slider-stub>
+        </div>
+      </div>
+    </div>
+    <el-button-stub type="primary" icon="" nativetype="button" class="activity__button">
+      Hit me with another one
+    </el-button-stub>
+  </div>
+</div>
+`;

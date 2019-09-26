@@ -87,6 +87,8 @@ import {
   mapMutations,
 } from 'vuex';
 
+import helper from '../helpers/helper';
+
 import {
   PARTICIPANTS,
   BUDGET,
@@ -145,9 +147,10 @@ export default {
       'SAVE_ACTIVITY_TO_LIST',
     ]),
     ...mapActions(['fetchActivity']),
+    uid: helper.uid,
     handleSaveActivity() {
       this.SAVE_ACTIVITY_TO_LIST({
-        uid: `${Math.round(Math.random() * 100)}_${Date.now()}`,
+        uid: this.uid(),
         name: this.currentActivity,
         participants: this.currentParticipants,
         budget: this.currentBudget,

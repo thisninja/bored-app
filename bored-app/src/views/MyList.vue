@@ -51,7 +51,7 @@ import {
   mapGetters,
   mapMutations,
 } from 'vuex';
-import isExpensive from '../helpers/helper';
+import helper from '../helpers/helper';
 import {
   ACTIVITY,
   PARTICIPANTS,
@@ -81,7 +81,7 @@ export default {
     handleSelectionChange(value) {
       this.selected = value;
     },
-    isExpensive,
+    isExpensive: helper.isExpensive,
   },
   computed: {
     ...mapGetters(['activitiesList']),

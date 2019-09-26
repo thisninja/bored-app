@@ -58,7 +58,7 @@ describe('Home.vue', () => {
   });
 
   describe('hooks', () => {
-    it('created', () => {
+    it('handleHitMeButton', () => {
       expect(actions.fetchActivity).toHaveBeenCalled();
     });
   });
